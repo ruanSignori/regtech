@@ -6,7 +6,7 @@ import { styles } from './styles';
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Input } from '@components/Input';
 import { useNavigation } from "@react-navigation/native";
-import { ButtonSubmit } from '@components/Button';
+import { ButtonSubmit } from '@components/ButtonSubmit';
 import { BoxSingIn } from '@components/BoxSingIn';
 import { theme } from '@themes/colors';
 import { useAuth } from '@hooks/useAuth';
@@ -26,6 +26,7 @@ export function SingIn() {
   };
 
   const handleSignIn = async () => {
+    setErrorMsg("");
     setIsLoading(true)
     try {
       await signInWithEmail(email, password)
@@ -37,12 +38,14 @@ export function SingIn() {
     setIsLoading(false)
   }
   const handleSignInAnonymous = async () => {
+    setErrorMsg("");
     setIsLoading(true)
     await signInAnonymous()
     setIsLoading(false)
   }
 
   const handleForgotPassword = async () => {
+    setErrorMsg("");
     await resetPassword(email);
   }
 
@@ -56,12 +59,18 @@ export function SingIn() {
         resizeMode="contain"
       />
       <Text style={styles.heading}>Entrar</Text>
-      <Input placeholder='E-mail' value={email} onChangeText={setEmail} />
+      <Input 
+        placeholder='E-mail' 
+        value={email} 
+        onChangeText={setEmail} 
+        errorEvent={errorMsg.length > 0}
+      />
       <Input
         placeholder="Senha"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        errorEvent={errorMsg.length > 0}
       />
 
       {errorMsg.length > 1 && (

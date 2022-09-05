@@ -13,7 +13,7 @@ export function Input({ errorEvent = false, ...rest }: InputProps) {
     <KeyboardAvoidingView style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholderTextColor={errorEvent ? theme.colors.red_secundary : theme.colors.gray}
+        placeholderTextColor={errorEvent ? theme.colors.red : theme.colors.gray}
         {...rest}
       />
     </KeyboardAvoidingView>

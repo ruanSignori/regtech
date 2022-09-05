@@ -1,5 +1,13 @@
 import { useState, useEffect, createContext, ReactNode, useMemo } from "react";
-import { User, auth, UserCredential, signInWithEmailAndPassword, signInAnonymously,sendPasswordResetEmail } from "@services/firebase"
+import { 
+  User, 
+  auth, 
+  UserCredential, 
+  signInWithEmailAndPassword, 
+  signInAnonymously,
+  sendPasswordResetEmail,
+  createUserWithEmailAndPassword
+} from "@services/firebase"
 import { handleErrorSignInLogs } from '../logs/errorLogFirebase';
 import { Alert } from "react-native";
 import ENV from '../../configFirebase';
@@ -14,6 +22,7 @@ type AuthContextType = {
   signInWithEmail: (email_session: string, password: string) => Promise<void>;
   signInAnonymous: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  registerWithEmail: (email_session: string, password: string) => Promise<void>;
 }
 
 export const AuthContext = createContext({} as AuthContextType)
@@ -60,6 +69,21 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     });
   }
 
+  const registerWithEmail = async (email_session: string, password: string) => {
+    await createUserWithEmailAndPassword(auth, email_session, password)
+      .then((userFirebase) => {
+
+        const { user } = userFirebase
+
+        setUser({...user})
+      })
+      .catch((error) => {
+        const { code } = error;
+        console.log(code);
+        handleErrorSignInLogs(code as string);
+      });
+  }
+
   useEffect(() => {
     auth.onAuthStateChanged(firebaseUser => {
 
@@ -78,6 +102,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       signInWithEmail,
       signInAnonymous,
       resetPassword,
+      registerWithEmail
     }
   }, [user])
 

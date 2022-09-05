@@ -10,7 +10,6 @@ import {
 } from "@services/firebase"
 import { handleErrorSignInLogs } from '../logs/errorLogFirebase';
 import { Alert } from "react-native";
-import ENV from '../../configFirebase';
 
 type AuthContextProviderProps = {
   children: ReactNode;
@@ -18,7 +17,6 @@ type AuthContextProviderProps = {
 
 type AuthContextType = {
   user: User | null;
-  isAdmin: boolean;
   signInWithEmail: (email_session: string, password: string) => Promise<void>;
   signInAnonymous: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
@@ -33,7 +31,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
     return user;
   });
-  const [isAdmin, setIsAdmin] = useState(false)
 
   const signInWithEmail = async (email_session: string, password: string) => {
     try {
@@ -87,10 +84,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     auth.onAuthStateChanged(firebaseUser => {
 
-      if (firebaseUser?.email === ENV.APP_ENV_CREDENTIALADMIN) {
-        setIsAdmin(true)
-      }
-
       setUser(firebaseUser);
     });
   }, [])
@@ -98,7 +91,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const dependenciesValue = useMemo(() => {
     return {
       user,
-      isAdmin,
       signInWithEmail,
       signInAnonymous,
       resetPassword,

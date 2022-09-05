@@ -9,7 +9,7 @@ export function Routes() {
   return (
     <NavigationContainer>
       {user ? (
-        <StackRoutes adminIsLogged={isAdmin} />
+        <StackRoutes />
       ) : (
         <UserRoutes />
       )}

@@ -9,13 +9,7 @@ import { Temperature } from "@screens/Temperature";
 
 const Tab = createBottomTabNavigator();
 
-type StackRoutesProps = {
-  adminIsLogged: boolean | undefined;
-};
-
-export function StackRoutes({
-  adminIsLogged = false,
-}: StackRoutesProps): JSX.Element {
+export function StackRoutes(): JSX.Element {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -57,17 +51,6 @@ export function StackRoutes({
             ),
           }}
         />
-        {adminIsLogged && (
-          <Tab.Screen
-            name="Admin"
-            component={Admin}
-            options={{
-              tabBarIcon: ({ size, color }) => (
-                <FontAwesome name="user-secret" size={size} color={color} />
-              ),
-            }}
-          />
-        )}
       </>
     </Tab.Navigator>
   );

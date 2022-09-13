@@ -4,7 +4,7 @@ import { StackRoutes } from "@routes/stack.routes"
 import { UserRoutes } from "@routes/user.routes"
 
 export function Routes() {
-  const { user, isAdmin } = useAuth();
+  const { user } = useAuth();
   console.log(user)
   return (
     <NavigationContainer>

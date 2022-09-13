@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, View } from "react-native";
 
@@ -7,6 +6,7 @@ import { styles } from "./styles";
 type ContentDataProps = {
   colorsGradient: string[];
   dataValue: string;
+  boxShadow: string;
   subString?: string;
 };
 
@@ -14,10 +14,11 @@ export function ContentData({
   colorsGradient,
   dataValue,
   subString,
+  boxShadow
 }: ContentDataProps) {
   return (
     <LinearGradient
-      style={styles.container}
+      style={[styles.container, { shadowColor: boxShadow}]}
       colors={colorsGradient}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}

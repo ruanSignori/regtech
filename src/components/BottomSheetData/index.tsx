@@ -8,8 +8,12 @@ import { theme } from "@themes/colors";
 import { SecundaryStats } from "@components/SecundaryStats";
 import { styles } from "./styles";
 
+type BottomSheetDataType = {
+  title: string;
+  value: string
+}
 
-function BottomSheetData() {
+function BottomSheetData({ title, value}: BottomSheetDataType) {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const handleOpenBottomSheet = () => {
@@ -38,8 +42,8 @@ function BottomSheetData() {
         <Text style={styles.title}>Outras informações...</Text>
         <View style={styles.contentBottomSheet}>
           <SecundaryStats
-            title="Nível da umidade"
-            valueData="Alto"
+            title={title}
+            valueData={value}
             colorData={theme.colors.red_third}
           >
             <MaterialIcons

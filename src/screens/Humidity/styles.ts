@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginTop: "16%",
     marginLeft: 20,
-    color: theme.colors.green,
+    color: theme.colors.green_secundary,
     fontWeight: "bold",
     letterSpacing: 1.2,
     fontSize: 30,

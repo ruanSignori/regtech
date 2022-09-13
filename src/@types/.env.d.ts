@@ -7,4 +7,5 @@ declare module '@env' {
   export const MESSAGING_SENDER_ID: string;
   export const APP_ID: string;
   export const APP_ENV_CREDENTIALADMIN: string;
+  export const APP_ENV_EXPO_UPDTADE: string;
 }

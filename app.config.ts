@@ -1,14 +1,16 @@
-import { ExpoConfig } from '@expo/config-types';
+import { ExpoConfig, ConfigContext } from '@expo/config';
 
-const config: ExpoConfig = {
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
   name: 'regtech',
-  slug: 'regtech',
-  android: {
-    "package": "reg.tech"
+  slug: "regtech",
+  runtimeVersion: {
+    policy: "sdkVersion"
+  },
+  updates: {
+    url: "https://u.expo.dev/27a61312-4281-4345-9e0a-74bf6e2ee91f"
   },
   ios: {
-    "bundleIdentifier": "reg.tech"
+    bundleIdentifier: "com.ruansignori.regtech"
   }
-};
-
-export default config;
+});

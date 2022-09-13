@@ -36,8 +36,8 @@ export function Humidity() {
     <>
       {humidity === null ? (
         <SafeAreaView style={styles.container}>
-        <ActivityIndicator size="large" color={theme.colors.brand} />
-      </SafeAreaView>
+          <ActivityIndicator size="large" color={theme.colors.brand} />
+        </SafeAreaView>
       ) : (
         <SafeAreaView style={styles.content}>
           <Text style={styles.title}>Umidade do Solo</Text>
@@ -46,6 +46,7 @@ export function Humidity() {
               colorsGradient={[green_secundary, green_thir]}
               dataValue={humidity.toString()}
               subString="%"
+              boxShadow={theme.colors.green_secundary}
             />
           </View>
           <View style={styles.location}>
@@ -56,7 +57,7 @@ export function Humidity() {
             />
             <Text style={styles.textLocation}>E. E. E. B. Padre Fernando</Text>
           </View>
-          <BottomSheetData />
+          <BottomSheetData title='Nível da umidade' value={"Alto"}/>
         </SafeAreaView>
       )}
     </>

@@ -9,15 +9,13 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 130,
-    shadowColor: theme.colors.text,
     shadowOffset: {
-      width: 0,
-      height: 6,
+      width: 30,
+      height: 10,
     },
-    shadowOpacity: 0.39,
-    shadowRadius: 8.3,
-
-    elevation: 13,
+    shadowOpacity: 100,
+    shadowRadius: 100,
+    elevation: 50,
   },
   content: {
     flexDirection: "row",

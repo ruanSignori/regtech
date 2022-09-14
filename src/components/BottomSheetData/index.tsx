@@ -1,6 +1,6 @@
 import { Entypo, MaterialIcons, Feather } from "@expo/vector-icons";
 import BottomSheet from "@gorhom/bottom-sheet/";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { gestureHandlerRootHOC } from "react-native-gesture-handler";
 
@@ -10,7 +10,7 @@ import { styles } from "./styles";
 
 type BottomSheetDataType = {
   title: string;
-  value: string
+  value: string;
 }
 
 function BottomSheetData({ title, value}: BottomSheetDataType) {
@@ -19,6 +19,22 @@ function BottomSheetData({ title, value}: BottomSheetDataType) {
   const handleOpenBottomSheet = () => {
     bottomSheetRef.current?.expand();
   };
+
+  const handleColorOfValue = useMemo(() => {
+    if (typeof value !== 'string') return;
+
+    switch (value) {
+      case "Baixo":
+        return theme.colors.red_third
+      case "Razoável":
+        return theme.colors.green_secundary;
+      case "Alto":
+        return theme.colors.brand;
+      default:
+        break;
+    }
+
+  }, [value])
   return (
     <>
       <TouchableOpacity
@@ -44,7 +60,7 @@ function BottomSheetData({ title, value}: BottomSheetDataType) {
           <SecundaryStats
             title={title}
             valueData={value}
-            colorData={theme.colors.red_third}
+            colorData={handleColorOfValue as string}
           >
             <MaterialIcons
               name="waves"

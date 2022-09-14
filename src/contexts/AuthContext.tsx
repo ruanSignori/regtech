@@ -76,7 +76,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       })
       .catch((error) => {
         const { code } = error;
-        console.log(code);
         handleErrorSignInLogs(code as string);
       });
   }

@@ -47,6 +47,7 @@ export function Register() {
         loop
         resizeMode="contain"
       />
+      <Text style={styles.heading}>Registrar</Text>
       <View style={styles.form}>
         <Input
           errorEvent={errorMsg.length > 0}

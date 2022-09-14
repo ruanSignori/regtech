@@ -3,7 +3,7 @@ import { ContentData } from '@components/ContentData';
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { onValue, ref, database } from '@services/firebase';
 import { theme } from '@themes/colors';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, ActivityIndicator, SafeAreaView } from 'react-native';
 
 import { styles } from './styles';
@@ -17,7 +17,17 @@ export function Humidity() {
   const [humidity, setHumidity] = useState<number | null>(
     null
   );
+
   const { green_secundary, green_thir } = theme.colors;
+
+  const handleLevelHumidity = useMemo(() => {
+    if (typeof humidity !== 'number') return;
+
+    if (humidity <= 50) return 'Baixo';
+    if (humidity <= 70) return 'Razoável';
+    else return 'Alto';
+      
+  }, [humidity])
 
   useEffect(() => {
     const statsGardenRef = ref(database, "/stats_garden");
@@ -57,7 +67,7 @@ export function Humidity() {
             />
             <Text style={styles.textLocation}>E. E. E. B. Padre Fernando</Text>
           </View>
-          <BottomSheetData title='Nível da umidade' value={"Alto"}/>
+          <BottomSheetData title='Nível da umidade' value={handleLevelHumidity as string}/>
         </SafeAreaView>
       )}
     </>

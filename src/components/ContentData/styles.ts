@@ -6,6 +6,10 @@ export const styles = StyleSheet.create({
   container: {
     width: 250,
     height: 250,
+  },
+  gradientContainer: {
+    width: '100%',
+    height: '100%',
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 130,

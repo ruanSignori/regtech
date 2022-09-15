@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
   modal: {
     backgroundColor: theme.colors.white,
     paddingBottom: getBottomSpace() + 16,
+    borderRadius: 25,
   },
   indicator: {
     backgroundColor: theme.colors.text,

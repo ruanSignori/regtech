@@ -31,7 +31,7 @@ function BottomSheetData({ title, value}: BottomSheetDataType) {
       case "Alto":
         return theme.colors.brand;
       default:
-        break;
+        return theme.colors.brand
     }
 
   }, [value])

@@ -12,6 +12,7 @@ web-build/
 eas.json
 .env
 .env.local
+app.config.js
 
 # macOS
 .DS_Store

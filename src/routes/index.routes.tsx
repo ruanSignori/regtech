@@ -15,5 +15,3 @@ export function Routes() {
     </NavigationContainer>
   )
 }
-
-// exp://qs-ahp.ruansignori.regtech.exp.direct:80

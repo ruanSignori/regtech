@@ -1,5 +1,8 @@
 import BottomSheetData from '@components/BottomSheetData';
 import { ContentData } from '@components/ContentData';
+import { SecundaryStats } from '@components/SecundaryStats';
+import Feather from '@expo/vector-icons/build/Feather';
+import MaterialIcons from '@expo/vector-icons/build/MaterialIcons';
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { onValue, ref, database } from '@services/firebase';
 import { theme } from '@themes/colors';
@@ -27,7 +30,22 @@ export function Humidity() {
     if (humidity <= 70) return 'Razoável';
     else return 'Alto';
       
-  }, [humidity])
+  }, [humidity]);
+
+  const handleColorOfValue = useMemo(() => {
+    if (typeof handleLevelHumidity !== 'string') return;
+
+    switch (handleLevelHumidity) {
+      case "Baixo":
+        return theme.colors.red_third
+      case "Razoável":
+        return theme.colors.green_secundary;
+      case "Alto":
+        return theme.colors.brand;
+      default:
+        return theme.colors.brand
+    }
+  }, [handleLevelHumidity]);
 
   useEffect(() => {
     const statsGardenRef = ref(database, "/stats_garden");
@@ -67,7 +85,26 @@ export function Humidity() {
             />
             <Text style={styles.textLocation}>E. E. E. B. Padre Fernando</Text>
           </View>
-          <BottomSheetData title='Nível da umidade' value={handleLevelHumidity as string}/>
+          <BottomSheetData>
+            <SecundaryStats
+              title='Nível da umidade'
+              valueData={handleLevelHumidity as string}
+              colorData={handleColorOfValue as string}
+            >
+              <MaterialIcons
+                name="waves"
+                size={24}
+                color={theme.colors.night_blue}
+              />
+            </SecundaryStats>
+            <SecundaryStats
+              title="Tempo neste nível"
+              valueData="22m"
+              colorData={theme.colors.night_blue}
+            >
+              <Feather name="clock" size={24} color={theme.colors.night_blue} />
+            </SecundaryStats>
+          </BottomSheetData>
         </SafeAreaView>
       )}
     </>

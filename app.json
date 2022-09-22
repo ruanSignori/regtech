@@ -2,7 +2,7 @@
   "expo": {
     "name": "RegTech",
     "description": "Aplicativo de monitoramento do solo da escola Padre Fernando - Roca Sales",
-    "slug": "regtech",
+    "slug": "RegTech",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

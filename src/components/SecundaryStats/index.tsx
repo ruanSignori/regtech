@@ -7,7 +7,7 @@ import { styles } from "./styles";
 type SecundaryStatsProps = {
   title: string;
   valueData: string;
-  colorData?: string | undefined;
+  colorData: string
 } & ViewProps;
 
 export function SecundaryStats({

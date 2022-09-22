@@ -1,5 +1,8 @@
 import BottomSheetData from '@components/BottomSheetData';
 import { ContentData } from '@components/ContentData';
+import { SecundaryStats } from '@components/SecundaryStats';
+import FontAwesome5 from '@expo/vector-icons/build/FontAwesome5';
+import MaterialCommunityIcons from '@expo/vector-icons/build/MaterialCommunityIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { database, onValue, ref } from '@services/firebase';
 import { theme } from '@themes/colors';
@@ -15,10 +18,34 @@ type TemperatureTypes = {
 
 
 export function Temperature() {
-  const [temperature, setTemperature] = useState<TemperatureTypes | null>({
-    celsius: null,
-    fahrenheit: null
-  });
+  const [temperature, setTemperature] = useState<TemperatureTypes | null>(null);
+
+  const handleLevelTemperature = useMemo(() => {
+    if (typeof temperature?.celsius !== "number") return;
+
+    const value = temperature.celsius <= 33 ? "Baixo" : "Alto";
+    return value;
+  }, [temperature?.celsius]);
+
+  const handleColorOfValue = useMemo(() => {
+    if (typeof handleLevelTemperature !== 'string') return;
+
+    switch (handleLevelTemperature) {
+      case "Baixo":       
+        return theme.colors.brand
+      case "Alto":
+        return theme.colors.red_third
+      default:
+        return theme.colors.text
+    }
+  }, [handleLevelTemperature])
+
+  const formatValue = useCallback((data: number | null) => {
+    if (data === null) return;
+
+    const fixedNumber = data.toFixed();
+    return fixedNumber.toString();
+  }, [temperature]);
 
   useEffect(() => {
     const statsGardenRef = ref(database, "/stats_garden");
@@ -37,13 +64,6 @@ export function Temperature() {
       setTemperature(null);
     };
   }, []);
-
-  const formatValue = useCallback((data: number | null) => {
-    if (data === null) return;
-
-    const fixedNumber = data.toFixed();
-    return fixedNumber.toString();
-  }, [temperature]);
 
   return (
     <>
@@ -70,7 +90,30 @@ export function Temperature() {
             />
             <Text style={styles.textLocation}>E. E. E. B. Padre Fernando</Text>
           </View>
-          <BottomSheetData title='Temperatura em °F' value={`${formatValue(temperature.fahrenheit)} °F`} />
+          <BottomSheetData>
+            <SecundaryStats
+              title='Temperatura em fahrenheit'
+              valueData={`${temperature.fahrenheit} °F`}
+              colorData={theme.colors.brand}
+            >
+              <MaterialCommunityIcons 
+                name="car-brake-temperature" 
+                size={24} 
+                color={theme.colors.night_blue} 
+              />
+            </SecundaryStats>
+            <SecundaryStats
+              title='Nível da temperatura'
+              valueData={handleLevelTemperature as string}
+              colorData={handleColorOfValue as string}
+            >
+              <FontAwesome5 
+                name="temperature-high" 
+                size={24} 
+                color={theme.colors.night_blue}
+              />
+            </SecundaryStats>
+          </BottomSheetData>
         </SafeAreaView>
       )}
     </>

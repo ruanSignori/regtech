@@ -14,4 +14,8 @@ export function Routes() {
       )}
     </NavigationContainer>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f1769a50413bb1f643b416aae7f4ff30ef9e9ef7

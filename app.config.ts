@@ -2,8 +2,9 @@ import { ExpoConfig, ConfigContext } from '@expo/config';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'regtech',
-  slug: "regtech",
+  name: 'RegTech',
+  slug: "RegTech",
+  icon: '',
   runtimeVersion: {
     policy: "sdkVersion"
   },

@@ -27,8 +27,10 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   text: {
-    color: theme.colors.text,
-    lineHeight: 22,
+    maxWidth: '80%',
+    fontSize: 14, 
+    color: theme.colors.text_secundary,
+    lineHeight: 30,
   },
   credits: {
     width: '100%',

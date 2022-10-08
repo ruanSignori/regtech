@@ -10,6 +10,7 @@
       "@themes/*": ["./src/styles/themes/*"],
       "@routes/*": ["./src/routes/*"],
       "@hooks/*": ["./src/hooks/*"],
+
     }
   },
   "typeRoots": ["./src/@types"],

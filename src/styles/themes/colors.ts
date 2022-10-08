@@ -1,8 +1,10 @@
+
 export const theme = {
   colors: {
     brand: "#2385E3",
 
     text: "#383B43",
+    text_secundary: "#374151",
 
     white: "#F8FAFC",
     white_secundary: "#E2E8F0",

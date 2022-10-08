@@ -1,9 +1,29 @@
+import { 
+  Poppins_300Light, 
+  Poppins_400Regular, 
+  Poppins_700Bold, 
+  useFonts 
+} from '@expo-google-fonts/poppins';
+import { theme } from '@themes/colors';
 import React from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, SafeAreaView, ActivityIndicator } from 'react-native';
+
 
 import { styles } from './styles';
 
 export function Home() {
+
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular
+  });
+
+  if (!fontsLoaded) {
+    return (
+      <SafeAreaView style={styles.container}>
+          <ActivityIndicator size="large" color={theme.colors.brand} />
+      </SafeAreaView>
+    )
+  };
 
   const toolsUsed = [
     { key: "Placa heltec wi-fi lora 32" },
@@ -33,7 +53,7 @@ export function Home() {
     { name: "Latifa Plas de Oliveira" },
     { name: "Luana Olinda Kuhn" },
     { name: "Luiza Eduarda Nicoletti"}
-  ]
+  ];
 
   return (
     <ScrollView style={styles.container} >
@@ -45,7 +65,7 @@ export function Home() {
             Tecnológica, em conjunto com a professora Ana Maria Sandri Ribas do Amaral na
             matéria Monitoramento Ambiental. Foi desenvolvido em Aula o Projeto REGTECH. O aplicativo foi desenvolvido pelo aluno Ruan Signori, da turma 303
           </Text>
-          <Text style={styles.subTitle}>Obejtivos do projeto</Text>
+          <Text style={styles.subTitle}>Objetivos do projeto</Text>
           <Text style={styles.text}>
             Essa pesquisa tem como objetivo apresentar um protótipo de uma estufa
             automatizada de baixo custo com uso de Internet das Coisas (IoT), para controle,

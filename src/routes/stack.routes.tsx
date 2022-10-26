@@ -1,12 +1,11 @@
-import { FontAwesome5, Ionicons, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, FontAwesome, Feather } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
-import { Admin } from "@screens/Admin";
 import { Home } from "@screens/Home";
 import { Humidity } from "@screens/Humidity";
 import { Temperature } from "@screens/Temperature";
-
+import { Gallery } from "@screens/Gallery";
 const Tab = createBottomTabNavigator();
 
 export function StackRoutes(): JSX.Element {
@@ -48,6 +47,15 @@ export function StackRoutes(): JSX.Element {
           options={{
             tabBarIcon: ({ size, color }) => (
               <FontAwesome5 name="temperature-low" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Galeria"
+          component={Gallery}
+          options={{
+            tabBarIcon: ({ size, color }) => (
+              <Feather name="image" size={size} color={color} />
             ),
           }}
         />

@@ -92,7 +92,7 @@ export function Temperature() {
           </View>
           <BottomSheetData>
             <SecundaryStats
-              title='Temperatura em fahrenheit'
+              title='Em Fahrenheit'
               valueData={`${temperature.fahrenheit} °F`}
               colorData={theme.colors.brand}
             >

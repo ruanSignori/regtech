@@ -1,7 +1,6 @@
 import BottomSheetData from '@components/BottomSheetData';
 import { ContentData } from '@components/ContentData';
 import { SecundaryStats } from '@components/SecundaryStats';
-import Feather from '@expo/vector-icons/build/Feather';
 import MaterialIcons from '@expo/vector-icons/build/MaterialIcons';
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { onValue, ref, database } from '@services/firebase';
@@ -96,13 +95,6 @@ export function Humidity() {
                 size={24}
                 color={theme.colors.night_blue}
               />
-            </SecundaryStats>
-            <SecundaryStats
-              title="Tempo neste nível"
-              valueData="22m"
-              colorData={theme.colors.night_blue}
-            >
-              <Feather name="clock" size={24} color={theme.colors.night_blue} />
             </SecundaryStats>
           </BottomSheetData>
         </SafeAreaView>

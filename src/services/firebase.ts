@@ -13,6 +13,7 @@ import {
   UserCredential
 } from "firebase/auth";
 import { getDatabase, get, ref, onValue } from "firebase/database";
+import { getStorage, listAll } from 'firebase/storage'
 
 import ENV from '../../configFirebase';
 
@@ -30,6 +31,7 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const database = getDatabase();
+const storage = getStorage();
 
 export {
   User,
@@ -47,4 +49,6 @@ export {
   signInWithCredential,
   GoogleAuthProvider,
   signInAnonymously,
+  storage,
+  listAll
 };

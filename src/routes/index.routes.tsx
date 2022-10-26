@@ -2,9 +2,18 @@ import { useAuth } from "@hooks/useAuth"
 import NavigationContainer from "@react-navigation/native/src/NavigationContainer"
 import { StackRoutes } from "@routes/stack.routes"
 import { UserRoutes } from "@routes/user.routes"
+import { useEffect } from "react";
 
 export function Routes() {
   const { user } = useAuth();
+
+  useEffect(() => {
+    console.log(typeof user, '2')
+  }, [])
+
+  useEffect(() => {
+    console.log(typeof user)
+  }, [user])
   return (
     <NavigationContainer>
       {user ? (
@@ -14,8 +23,4 @@ export function Routes() {
       )}
     </NavigationContainer>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f1769a50413bb1f643b416aae7f4ff30ef9e9ef7

@@ -3,7 +3,7 @@ import { ExpoConfig, ConfigContext } from '@expo/config';
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'RegTech',
-  slug: "RegTech",
+  slug: "regtech",
   icon: '',
   runtimeVersion: {
     policy: "sdkVersion"

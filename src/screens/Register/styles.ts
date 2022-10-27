@@ -1,20 +1,19 @@
 import { theme } from '@themes/colors';
-import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { StyleSheet, Dimensions } from 'react-native';
+import { getStatusBarHeight, getBottomSpace } from "react-native-iphone-x-helper";
 
-
+const { width, height } = Dimensions.get('window');
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "flex-start",
     paddingHorizontal: 20,
     paddingTop: getStatusBarHeight(),
-    paddingBottom: 70,
-    justifyContent: "flex-start",
+    paddingBottom: getBottomSpace(),
   },
   animation: {
     width: 300,
-    marginTop: -10,
   },
   heading: {
     alignSelf: "flex-start",
@@ -23,7 +22,7 @@ export const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   form: {
-    marginTop: 24,
+    marginTop: height * 0.03, // 3% da altura total
     width: "100%",
   },
   backScreen: {

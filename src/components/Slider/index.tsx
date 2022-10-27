@@ -54,26 +54,17 @@ export function Slider() {
   const offSetCalc = offSet.map((value, index) => index * (width * 0.8 - 40) + (index - 1) * 40);
   
   return (
-    <>
-      {allImages.length === 0 ? (
-        <View style={styles.containerLoading}>
-          <ActivityIndicator size="large" color={theme.colors.brand} />
-        </View>
-      ) : (
-          <FlatList 
-            data={allImages}
-            style={[styles.container, { width }]}
-            keyExtractor={item => item.name}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            snapToOffsets={offSetCalc}
-            renderItem={renderItem}
-            snapToAlignment='start'
-            scrollEventThrottle={16}
-            decelerationRate="fast"
-          />
-        )
-      }
-    </>
+    <FlatList 
+      data={allImages}
+      style={[styles.container, { width }]}
+      keyExtractor={item => item.name}
+      showsHorizontalScrollIndicator={false}
+      horizontal
+      snapToOffsets={offSetCalc}
+      renderItem={renderItem}
+      snapToAlignment='start'
+      scrollEventThrottle={16}
+      decelerationRate="fast"
+    />
   );
 }
